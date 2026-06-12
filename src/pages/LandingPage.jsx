@@ -133,40 +133,13 @@ export default function LandingPage() {
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <button
-            onClick={() => navigate('/dashboard')}
-            className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-brand-violet to-brand-purple hover:from-brand-violet/90 hover:to-brand-purple/90 text-white font-bold text-xs shadow-glow-violet transition-all flex items-center justify-center gap-2 shimmer-btn"
-          >
-            Launch Civic Portal <ArrowRight className="w-4 h-4" />
-          </button>
-          <button
             onClick={() => navigate('/signup')}
-            className="w-full sm:w-auto px-8 py-4 rounded-xl bg-white hover:bg-purple-50 border border-purple-100 text-slate-700 hover:text-slate-800 text-xs font-bold transition-all shadow-soft flex items-center justify-center gap-2"
+           className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-brand-violet to-brand-purple hover:from-brand-violet/90 hover:to-brand-purple/90 text-white font-bold text-xs shadow-glow-violet transition-all flex items-center justify-center gap-2 shimmer-btn"
           >
             Join as Citizen Volunteer
           </button>
         </motion.div>
       </section>
-
-      {/* Live Statistics Section */}
-      <section className="max-w-5xl mx-auto px-6 py-12 relative z-10">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 p-8 rounded-3xl glass-panel bg-white/70 shadow-soft"
-        >
-          {stats.map((stat, idx) => (
-            <motion.div key={idx} variants={itemVariants} className="text-center p-4">
-              <h3 className={`text-3xl sm:text-4xl font-extrabold font-outfit leading-none mb-2 ${stat.color}`}>
-                {stat.value}
-              </h3>
-              <p className="text-[10px] text-slate-450 font-bold font-sans uppercase tracking-wider">{stat.label}</p>
-            </motion.div>
-          ))}
-        </motion.div>
-      </section>
-
       {/* How It Works - Visual Lifecycle Node */}
       <section className="max-w-5xl mx-auto px-6 py-20 relative z-10">
         <div className="text-center mb-16">
@@ -244,69 +217,6 @@ export default function LandingPage() {
               </motion.div>
             );
           })}
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="max-w-5xl mx-auto px-6 py-20 relative z-10 border-t border-purple-100/50">
-        <div className="text-center mb-16">
-          <h2 className="text-2xl sm:text-4xl font-bold font-outfit text-slate-800 mb-4">Voice of the Citizens</h2>
-          <p className="text-xs text-slate-500">Hear from members of our municipal partner corporations and green volunteer leads.</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          
-          <div className="glass-panel p-6 rounded-2xl flex flex-col justify-between shadow-soft">
-            <p className="text-xs text-slate-500 italic leading-relaxed mb-6">
-              "The AI duplicate checking is outstanding. We used to get 50 reports for a single landfill. NagarSetu merges reports into a single pin and alerts nearby volunteers instantly!"
-            </p>
-            <div className="flex items-center gap-3">
-              <img 
-                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150&auto=format&fit=crop&q=80" 
-                alt="Govt official" 
-                className="w-9 h-9 rounded-full object-cover border border-purple-100"
-              />
-              <div>
-                <h5 className="text-xs font-bold text-slate-800">Dr. Sandeep Goel</h5>
-                <span className="text-[9px] text-brand-violet uppercase font-mono font-bold">Municipal Commissioner</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="glass-panel p-6 rounded-2xl flex flex-col justify-between shadow-soft">
-            <p className="text-xs text-slate-500 italic leading-relaxed mb-6">
-              "Filing complaints actually feels rewarding now! Seeing my cleanup streak hit 15 days and getting an organic seeds gardening kit claimed using my XP feels awesome!"
-            </p>
-            <div className="flex items-center gap-3">
-              <img 
-                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80" 
-                alt="Resident" 
-                className="w-9 h-9 rounded-full object-cover border border-purple-100"
-              />
-              <div>
-                <h5 className="text-xs font-bold text-slate-800">Meera Nair</h5>
-                <span className="text-[9px] text-brand-purple uppercase font-mono font-bold">Citizen, Sector 12 Resident</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="glass-panel p-6 rounded-2xl flex flex-col justify-between shadow-soft">
-            <p className="text-xs text-slate-500 italic leading-relaxed mb-6">
-              "We managed to scale our weekend river cleaning drive from 10 volunteers to 120+ by using NagarSetu's regional event drives. The gamified leaderboards work magic!"
-            </p>
-            <div className="flex items-center gap-3">
-              <img 
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80" 
-                alt="Volunteer Squad Lead" 
-                className="w-9 h-9 rounded-full object-cover border border-purple-100"
-              />
-              <div>
-                <h5 className="text-xs font-bold text-slate-800">Rahul Verma</h5>
-                <span className="text-[9px] text-indigo-600 uppercase font-mono font-bold">Volunteer Squad Leader</span>
-              </div>
-            </div>
-          </div>
-
         </div>
       </section>
 
