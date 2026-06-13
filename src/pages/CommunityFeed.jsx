@@ -30,7 +30,7 @@ useEffect(() => {
 const loadFeed = async () => {
   try {
     const res = await getCommunityFeed();
-    setFeedPosts(res.data);
+    setFeedPosts(res.data || []);
   } catch (err) {
     console.error("Feed load error:", err);
   }
@@ -111,7 +111,7 @@ const loadFeed = async () => {
               
               {/* Post Hashtags */}
               <div className="flex flex-wrap gap-1.5 pt-1">
-                {post.tags.map((tag) => (
+                {(post.tags || []).map((tag) => (
                   <span key={tag} className="text-[10px] text-brand-purple font-semibold cursor-pointer hover:underline">
                     {tag}
                   </span>
@@ -125,7 +125,8 @@ const loadFeed = async () => {
               {/* Before Card */}
               <div className="relative rounded-2xl overflow-hidden h-48 border border-purple-100 shadow-soft">
                 <img
-                  src={post.beforeImage}
+                  src={post.imageUrl}
+                  src={post.afterImage}
                   alt="Before clean sweep"
                   className="w-full h-full object-cover"
                 />

@@ -12,6 +12,7 @@ import {
   Loader2,
   Trash2
 } from 'lucide-react';
+import { image } from 'framer-motion/client';
 
 export default function ComplaintUpload() {
   const { addComplaint } = useCivicData();
@@ -80,12 +81,19 @@ export default function ComplaintUpload() {
 
   try {
 
-    const formData = new FormData();
+   const formData = new FormData();
 
-    formData.append("title", title);
-    formData.append("description", description);
-    formData.append("latitude", latitude);
-    formData.append("longitude", longitude);
+formData.append("title", title);
+formData.append("description", description);
+formData.append("latitude", latitude);
+formData.append("longitude", longitude);
+formData.append("imageHash", imageHash); // MUST be "image"
+
+axios.post("http://localhost:8080/api/complaints/upload", formData, {
+  headers: {
+    "Content-Type": "multipart/form-data"
+  }
+});
 
     if (selectedFile) {
       formData.append(

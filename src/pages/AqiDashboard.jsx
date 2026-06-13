@@ -31,6 +31,13 @@ export default function AqiDashboard() {
   const [selectedWardId, setSelectedWardId] = useState('aqi-12');
   const [compareWardId1, setCompareWardId1] = useState('aqi-12');
   const [compareWardId2, setCompareWardId2] = useState('aqi-4');
+  const wardCoordinates = {
+  "aqi-12": { lat: 23.25, lon: 77.41 },
+  "aqi-4": { lat: 23.30, lon: 77.45 },
+  "aqi-9": { lat: 23.22, lon: 77.38 },
+  "aqi-15": { lat: 23.28, lon: 77.50 },
+  "aqi-7": { lat: 23.35, lon: 77.42 }
+};
 
   const activeWard = wardsAqi.find(w => w.id === selectedWardId) || wardsAqi[0];
   const compWard1 = wardsAqi.find(w => w.id === compareWardId1) || wardsAqi[0];
@@ -96,7 +103,28 @@ export default function AqiDashboard() {
     setSelectedWardId(id);
     showToast(`Focused on ${name} metrics!`, "info");
   };
+const compareFromBackend = async () => {
+  try {
+    const w1 = wardCoordinates[compareWardId1];
+    const w2 = wardCoordinates[compareWardId2];
 
+    const res = await fetch(
+      `http://localhost:8080/api/aqi/compare?lat1=${w1.lat}&lon1=${w1.lon}&lat2=${w2.lat}&lon2=${w2.lon}`
+    );
+
+    const data = await res.json();
+
+    showToast(
+      `Difference: ${data.difference} AQI | ${data.recommendation}`,
+      "info"
+    );
+
+    return data;
+  } catch (err) {
+    console.error(err);
+    showToast("Backend AQI comparison failed", "error");
+  }
+};
   return (
     <div className="space-y-8">
       {/* Dynamic Header */}
@@ -380,6 +408,12 @@ export default function AqiDashboard() {
             <h4 className="text-sm font-bold font-outfit text-themeLight-textMain">Inter-Ward Comparative Analysis</h4>
             <p className="text-[11px] text-themeLight-textSub mt-0.5">Compare active air quality ratings side-by-side across all municipal boundaries.</p>
           </div>
+          <button
+  onClick={compareFromBackend}
+  className="px-3 py-1 text-[10px] font-bold bg-brand-violet text-white rounded-lg hover:opacity-90"
+>
+  🔄 Fetch Live AQI Comparison
+</button>
           
           {/* Dropdown selectors for custom double comparison */}
           <div className="flex items-center gap-2 self-start">
