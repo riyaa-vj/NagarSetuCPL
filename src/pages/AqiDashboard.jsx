@@ -11,6 +11,7 @@ import {
   ArrowRightLeft,
   ChevronDown,
   Info
+  //changing it for me
 } from 'lucide-react';
 import { 
   AreaChart, 
@@ -67,7 +68,7 @@ export default function AqiDashboard() {
           caution: "Avoid outdoor physical exertion. Keep windows closed.",
           icon: ShieldAlert,
           textColor: "text-red-600",
-          strokeColor: "#EF4444"
+          strokeColor: "#d42b2b"
         };
     }
   };
